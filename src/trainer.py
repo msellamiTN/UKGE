@@ -141,8 +141,8 @@ class Trainer(object):
                 break
 
     def train(self, epochs=20, save_every_epoch=10, lr=0.001, data_dir=""):
-        sess = tf.Session()  # show device info
-        sess.run(tf.global_variables_initializer())
+        sess = tf.compat.v1.Session()  # show device info
+        sess.run(tf.compat.v1.global_variables_initializer())
 
         num_batch = self.this_data.triples.shape[0] // self.batch_size
         print('Number of batches per epoch: %d' % num_batch)
