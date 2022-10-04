@@ -689,7 +689,7 @@ class UKGE_logi_Tester(Tester):
                                      dim=self.this_data.dim,
                                      batch_size=self.this_data.batch_size, neg_per_positive=10, p_neg=1)
         # neg_per_positive, reg_scale and p_neg are not used in testing
-        sess = tf.Session()
+        sess = tf.compat.v1.Session()
         self.tf_parts._saver.restore(sess, model_save_path)  # load it
         value_ht, value_r, w, b = sess.run(
             [self.tf_parts._ht, self.tf_parts._r, self.tf_parts.w, self.tf_parts.b])  # extract values.
@@ -701,7 +701,7 @@ class UKGE_logi_Tester(Tester):
         # when a model doesn't have Mt, suppose it should pass Mh
 
     # override
-    def build_by_var(self, test_data, tf_model, this_data, sess=tf.Session()):
+    def build_by_var(self, test_data, tf_model, this_data, sess=tf.compat.v1.Session()):
         """
         use data and model in memory.
         get self.vec_c (vectors for concepts), and self.vec_r(vectors for relations)
@@ -763,7 +763,7 @@ class UKGE_rect_Tester(Tester):
                                      batch_size=self.this_data.batch_size, neg_per_positive=10, reg_scale=0.1,
                                      p_neg=1)
         # neg_per_positive, reg_scale and p_neg are not used in testing
-        sess = tf.Session()
+        sess = tf.compat.v1.Session()
         self.tf_parts._saver.restore(sess, model_save_path)  # load it
         value_ht, value_r, w, b = sess.run(
             [self.tf_parts._ht, self.tf_parts._r, self.tf_parts.w, self.tf_parts.b])  # extract values.
@@ -774,7 +774,7 @@ class UKGE_rect_Tester(Tester):
         self.b = b
 
     # override
-    def build_by_var(self, test_data, tf_model, this_data, sess=tf.Session()):
+    def build_by_var(self, test_data, tf_model, this_data, sess=tf.compat.v1.Session()):
         """
         use data and model in memory.
         get self.vec_c (vectors for concepts), and self.vec_r(vectors for relations)
